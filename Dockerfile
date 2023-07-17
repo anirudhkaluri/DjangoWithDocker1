@@ -1,0 +1,16 @@
+#Pull base image
+FROM python:3.10.10
+
+#SET ENVIRONMENT VARIABLES
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONBUFFERED 1
+
+#SET WROK DIRECTORY
+WORKDIR /code
+
+#INSTALL DEPENDENCIES
+COPY Pipfile Pipfile.lock /code/
+RUN pip install pipenv && pipenv install --system
+
+#COPY THE LOCAL CODE TO CODE DIRECTORY
+COPY . /code/
